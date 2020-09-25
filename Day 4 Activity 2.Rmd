@@ -1,0 +1,29 @@
+---
+title: "Untitled"
+author: "Cali Pfleger"
+date: "9/24/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(janitor)
+```
+
+## tidy the data by grouping by feed types
+
+```{r}
+chicken_counts_tidy <- chickwts %>% 
+  group_by(feed) %>% 
+  summarize(mean_weight = mean(weight),
+            sd_weight = sd(weight))
+
+```
+## Chicken Jitterplot 
+
+```{r}
+ggplot(data = chickwts, aes(x = feed, y = weight)) + geom_jitter()
+```
+
+
